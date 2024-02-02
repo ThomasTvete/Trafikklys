@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #frame {
+            background-color: black;
+            height: 450px;
+            width: 150px;
+            margin: 10px;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            justify-content: space-around;
+
+        }
+
+        .circle {
+            height: 120px;
+            width: 120px;
+            border-radius: 50%;
+        }
+
+        .red {
+            background-color: red;
+            opacity: 20%;
+        }
+
+        .yellow {
+            background-color: yellow;
+            opacity: 20%;
+        }
+
+        .green {
+            background-color: green;
+            opacity: 20%;
+        }
+
+        .bright {
+            opacity: 100%;
+        }
+    </style>
+</head>
+
+<body onload="light('red')">
+    <div id="frame">
+        <div id="red" class="circle red"></div>
+        <div id="yellow" class="circle yellow"></div>
+        <div id="green" class="circle green"></div>
+    </div>
+
+    <button onclick="light('red')">Rød</button>
+    <button onclick="light('yellow')">Gul</button>
+    <button onclick="light('green')">Grønn</button>
+    <button onclick="auto1()">Automatisk</button>
+    <button onclick="stop">Stopp</button>
+
+    <script>
+        function light(divId) {
+            
+            document.getElementById(divId).classList.toggle('bright');
+        }
+
+        let timer = setTimeout()
+
+        function auto1(){
+            document.getElementById('red').classList.add('bright');
+            document.getElementById('yellow').classList.remove('bright');
+            document.getElementById('green').classList.remove('bright');
+            setTimeout(auto2,2000);
+        }
+        function auto2(){
+            document.getElementById('yellow').classList.toggle('bright');
+            setTimeout(auto3,2000);
+
+        }
+        function auto3(){
+            document.getElementById('red').classList.toggle('bright');
+            document.getElementById('yellow').classList.toggle('bright');
+            document.getElementById('green').classList.toggle('bright');
+            setTimeout(auto4,5000);
+        }
+        function auto4(){
+            document.getElementById('yellow').classList.toggle('bright');
+            document.getElementById('green').classList.toggle('bright');
+            setTimeout(auto5,2000);
+        }
+        function auto5(){
+            document.getElementById('red').classList.toggle('bright');
+            document.getElementById('yellow').classList.toggle('bright');
+            setTimeout(auto1,5000);
+            
+        }
+        function stop(){
+            clearTimeout(timer);
+        }
+    </script>
+
+</body>
+
+</html>
